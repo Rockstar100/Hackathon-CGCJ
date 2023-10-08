@@ -5,6 +5,8 @@ import useDocTitle from '../hooks/useDocTitle';
 import cartContext from '../contexts/cart/cartContext';
 import CartItem from '../components/cart/CartItem';
 import EmptyView from '../components/common/EmptyView';
+import { Link } from 'react-router-dom';
+
 
 
 const Cart = () => {
@@ -14,7 +16,15 @@ const Cart = () => {
     const { cartItems } = useContext(cartContext);
 
     const cartQuantity = cartItems.length;
+    const [open, setOpen] = React.useState(false);
 
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     const cartTotal = cartItems.map(item => {
         return item.originalPrice * item.quantity;
@@ -30,8 +40,6 @@ const Cart = () => {
     const calculateCartDiscount = calculateTotal(cartDiscount);
     const displayCartDiscount = displayMoney(calculateCartDiscount);
 
-
-    // final total amount
     const totalAmount = calculateCartTotal - calculateCartDiscount;
     const displayTotalAmount = displayMoney(totalAmount);
 
@@ -86,7 +94,14 @@ const Cart = () => {
                                                 <b>{displayTotalAmount}</b>
                                             </div>
                                         </div>
-                                        <button type="button" className="btn checkout_btn">Checkout</button>
+
+                                        <div>
+                                           <Link to={`/checkout`}>
+                                           <button className="btn btn_primary btn_block btn_md">
+                                                Proceed to Checkout
+                                            </button>
+                                             </Link>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
