@@ -1,11 +1,28 @@
 import React from 'react';
 import '../styles/partials/components/CheckoutForm.css';
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import { Link } from 'react-router-dom';
 
 function CheckoutForm() {
     const inputStyle = {
         color: 'black',
         border: '2px solid black',
     };
+    const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
 
     return (
         <div>
@@ -47,14 +64,15 @@ function CheckoutForm() {
                         <input type="text" name="country" id="country" style={inputStyle} />
                         <label htmlFor="country">Country</label>
                     </div>
-                    
+
                    
               
               
                 <div className="row">
                 <button className="btn btn_primary btn_block btn_md">
-                                          Checkout
+                                      <Link to="/payment">Continue to Payment</Link>
                                             </button>
+                                            
                 </div>
             </form>
         </div>

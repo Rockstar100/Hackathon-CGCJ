@@ -1,0 +1,170 @@
+@import url(https://fonts.googleapis.com/css?family=Karla:400,700);
+
+$color-text: #383d43;
+$color-text-white: #dbe8f9;
+$color-text-light: #c1c8d0;
+$color-dot-active: #929ba8;
+$color-dot: #d9e0ea;
+$color-green: #73ba3e;
+$color-bg-blue: #4a8be3;
+$color-bg-white: #ffffff;
+$color-border: #d6e5ed;
+
+$methods: (
+  visa: 'https://cdn.rawgit.com/shelune/ui-components/master/payment-modal/1468714662_visa.png',
+	mastercard: 'https://cdn.rawgit.com/shelune/ui-components/master/payment-modal/1468714681_mastercard.png',
+  paypal: 'https://cdn.rawgit.com/shelune/ui-components/master/payment-modal/1468714667_paypal.png',
+	discover: 'https://cdn.rawgit.com/shelune/ui-components/master/payment-modal/1468714710_discover.png'
+);
+
+// body {
+// 	display: flex;
+// 	justify-content: center;
+// 	font-family: 'Karla', sans-serif;
+// 	background: #1f1f1f;
+// }
+
+// a {
+// 	text-decoration: none;
+// 	color: inherit;
+// }
+
+ul {
+	list-style: none;
+	margin: 0;
+}
+
+.card {
+	width: 400px;
+	//height: 500px;
+	border-radius: 15px;
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: 700;
+	background-color: $color-bg-white;
+	overflow: hidden;
+	position: relative;
+	
+	&_next {
+		background: $color-bg-blue;
+		color: $color-text-white;
+		display: block;
+		line-height: 70px;
+		
+		&:hover {
+			background: darken($color-bg-blue, 10%);
+		} 
+		
+		> span {
+			display: inline-block;
+			width: 15px;
+			height: 2px;
+			background: $color-text-white;
+			position: relative;
+			left: 5px;
+			top: -5px;
+			
+			&::before, &::after {
+				position: absolute;
+				content: '';
+				width: 8px;
+				height: 2px;
+				background: $color-text-white;
+				right: 0;
+			}
+			
+			&::before {
+				transform: rotate(45deg);
+				top: -3px;
+			}
+			
+			&::after {
+				transform: rotate(-45deg);
+				top: 3px;
+			}
+		}
+	}
+}
+
+.indicator {
+	margin: 30px 0;
+	
+	> a {
+		display: inline-block;
+		width: 8px;
+		height: 8px;
+		text-indent: 1000px;
+		overflow: hidden;
+		background: $color-dot;
+		border-radius: 50%;
+		margin: 0 6px;
+		
+		&:first-of-type {
+			background: $color-dot-active;
+		}
+	}
+}
+
+.card-content {
+	
+	&_title {
+		letter-spacing: 0.5px;
+		margin-bottom: 50px;
+	}
+	
+	&--methods {
+		text-align: left;
+		padding-left: 0;
+	}
+}
+
+.method {
+	letter-spacing: 0.75px;
+	color: $color-text-light;
+	border-top: 1px solid $color-border;
+	padding: 0 115px;
+	position: relative;
+	
+	&:last-of-type {
+		border-bottom: 1px solid $color-border;
+	}
+	
+	&::before {
+		position: absolute;
+		content: '';
+		width: 36px;
+		height: 25px;
+		background-size: cover;
+		background-image: url('https://cdn.rawgit.com/shelune/ui-components/master/payment-modal/1468714662_visa.png');
+		background-position: 50%;
+		left: calc(115px / 2);
+		top: 50%;
+		transform: translate(-50%,-50%);
+	}
+	
+	&.active {
+		color: $color-text;
+		
+			&::after {
+			position: absolute;
+			content: '';
+			right: 40px;
+			top: calc(50% - 5px);
+			width: 4px;
+			height: 10px;
+			border: solid $color-green;
+			border-width: 0 4px 4px 0;
+			transform: rotate(45deg) translateY(-50%);
+		}
+	}
+	
+	> a {
+		line-height: 70px;
+	}
+}
+
+@each $method, $thumbnail in $methods {
+	.method--#{$method}::before {
+		background-image: url($thumbnail);
+	}
+}

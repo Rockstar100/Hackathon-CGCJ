@@ -6,6 +6,7 @@ import cartContext from '../contexts/cart/cartContext';
 import CartItem from '../components/cart/CartItem';
 import EmptyView from '../components/common/EmptyView';
 import { Link } from 'react-router-dom';
+import '../styles/partials/components/CheckoutForm.css';
 
 
 
